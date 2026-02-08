@@ -16,11 +16,7 @@ export const DRIZZLE = "DRIZZLE";
     {
       provide: DRIZZLE,
       useFactory: () => {
-        // Use the environment variable, or fall back to local if it's missing
-        const connectionString =
-          process.env.DATABASE_URL ||
-          "postgres://user:password@localhost:5432/teal_iris";
-
+        const connectionString = process.env.DATABASE_URL;
         const pool = new Pool({
           connectionString,
         });
