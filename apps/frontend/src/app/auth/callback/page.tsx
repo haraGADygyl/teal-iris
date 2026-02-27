@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { toast } from "sonner";
 import { useAuthStore } from "../../../store/useAuthStore";
 
 
@@ -20,15 +19,12 @@ export default function AuthCallbackPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { setAuth } = useAuthStore();
-  document.querySelector("[data-sonner-toaster]")
 
   useEffect(() => {
     const token = searchParams.get("token");
     const error = searchParams.get("error");
 
     if (!token || error) {
-      toast.error("Login Failed. Please try again.");
-      console.error("Google login failed:", error ?? "No token received");
       setTimeout(() => router.replace("/login"), 1500)
       return;
     }
@@ -36,7 +32,6 @@ export default function AuthCallbackPage() {
     const user = decodeToken(token);
 
     if (!user) {
-      toast.error("Login Failed. Please try again.");
       console.error("Google login failed: could not decode token");
       router.replace("/login");
       return;
