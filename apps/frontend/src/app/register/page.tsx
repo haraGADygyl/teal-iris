@@ -4,10 +4,11 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import { LANGUAGES } from "../../lib/languages";
 import { TextField } from "../../components/forms/TextField";
 import { SelectField } from "../../components/forms/SelectField";
+import Google from "../../components/ui/icons/Google";
+
 
 
 const registerSchema = z
@@ -47,6 +48,13 @@ export default function RegisterPage() {
     // API not ready yet per issue — keep it UI-only for now.
     // You can log to verify behavior locally.
     console.log("register submit", values);
+  }
+
+  function onGoogleSignIn(e: React.FormEvent) {
+    e.preventDefault();
+
+    // Redirect to Google OAuth endpoint
+    window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/google`;
   }
 
   return (
@@ -125,6 +133,15 @@ export default function RegisterPage() {
                 className="mt-2 w-full rounded-lg bg-teal-500 px-4 py-2.5 font-medium text-slate-950 hover:bg-teal-400 disabled:opacity-60"
               >
                 {isSubmitting ? "Signing up…" : "Sign Up"}
+              </button>
+
+              <button
+                type="button"
+                onClick={onGoogleSignIn}
+                className="relative flex w-full items-center justify-center gap-3 rounded-lg bg-white px-4 py-2.5 font-medium text-slate-950 shadow-md hover:bg-slate-50 hover:shadow-lg transition-shadow duration-150"
+              >
+              <Google />
+                Continue with Google
               </button>
 
               <p className="pt-2 text-center text-sm text-slate-300">
