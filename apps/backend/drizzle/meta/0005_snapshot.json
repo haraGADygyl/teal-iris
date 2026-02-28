@@ -1,6 +1,6 @@
 {
-  "id": "dc912b63-0857-42c4-9fd4-5bf33536390b",
-  "prevId": "465abf77-eeb1-44f5-856c-bf65a5c7e9c2",
+  "id": "577ecb67-e1b2-4e52-b7bf-bbd69a5ad6d2",
+  "prevId": "dc912b63-0857-42c4-9fd4-5bf33536390b",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -341,7 +341,8 @@
       "schema": "public",
       "values": [
         "PENDING",
-        "ACCEPTED"
+        "ACCEPTED",
+        "REJECTED"
       ]
     }
   },

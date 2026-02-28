@@ -17,7 +17,7 @@ import { ChatModule } from "./modules/chat/chat.module.js";
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: "../../.env",
+      envFilePath: "../.env",
     }),
     DbModule,
     AuthModule,

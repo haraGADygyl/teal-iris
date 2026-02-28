@@ -12,9 +12,16 @@ import {
   pgEnum,
 } from "drizzle-orm/pg-core";
 
+export enum ConnectionStatus {
+  PENDING = "PENDING",
+  ACCEPTED = "ACCEPTED",
+  REJECTED = "REJECTED",
+}
+
 export const connectionStatusEnum = pgEnum("connection_status", [
-  "PENDING",
-  "ACCEPTED",
+  ConnectionStatus.PENDING,
+  ConnectionStatus.ACCEPTED,
+  ConnectionStatus.REJECTED,
 ]);
 
 export const languages = pgTable("languages", {
@@ -64,7 +71,9 @@ export const connections = pgTable(
     receiverId: uuid("receiver_id")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
-    status: connectionStatusEnum("status").default("PENDING").notNull(),
+    status: connectionStatusEnum("status")
+      .default(ConnectionStatus.PENDING)
+      .notNull(),
     createdAt: timestamp("created_at").defaultNow().notNull(),
     updatedAt: timestamp("updated_at").defaultNow().notNull(),
   },
