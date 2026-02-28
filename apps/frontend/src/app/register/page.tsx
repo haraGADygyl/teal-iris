@@ -48,7 +48,7 @@ export default function RegisterPage() {
     },
   });
 
-  const onSubmit = async (values: RegisterFormValues) => {
+  const onSubmit = async (values: RegisterForm) => {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/auth/register`,
